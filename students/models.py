@@ -6,6 +6,8 @@ from users.models import User
 
 from classes.models import Class
 
+from subjects.models import Subject
+
 
 class Student(AbstractBase):
 	first_name = models.CharField(max_length=255)
@@ -20,6 +22,10 @@ class Student(AbstractBase):
 		Class, 
 		on_delete=models.PROTECT, 
 		related_name='students',
+	)
+	subjects = models.ManyToManyField(
+		Subject,
+		related_name='students'
 	)
 
 	def __str__(self):

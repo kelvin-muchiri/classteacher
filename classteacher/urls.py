@@ -38,6 +38,7 @@ apipatterns = [
     path(r'auth/', include(authpatterns)),
     path(r'classes/', include('classes.urls')),
     path(r'students/', include('students.urls')),
+    path(r'subjects/', include('subjects.urls')),
 ]
 
 urlpatterns = [
