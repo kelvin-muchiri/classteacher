@@ -4,8 +4,10 @@ from students.models import Student
 
 from students.serializers import (
 	StudentSerializer,
-	StudentInlineSerializer
+	StudentInlineSerializer,
 )
+
+from students.filters import StudentFilter
 
 
 class BaseViewSet(ModelViewSet):
@@ -16,6 +18,7 @@ class BaseViewSet(ModelViewSet):
 class StudentViewSet(BaseViewSet):
 	queryset = Student.objects.all()
 	serializer_class = StudentSerializer
+	filter_class = StudentFilter
 
 	def get_serializer_class(self):
 		serializer_class = StudentSerializer
