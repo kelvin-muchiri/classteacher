@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
 
 
 CLASSTEACHER_APPS = [
+    'users.apps.UsersConfig',
 ]
 
 INSTALLED_APPS += CLASSTEACHER_APPS
@@ -141,6 +143,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
+        'common.utilities.auth.JWTAuthentication',
     ),
     'EXCEPTION_HANDLER': 'common.utilities.exceptions.custom_exception_handler',
     'DEFAULT_FILTER_BACKENDS': (
@@ -162,3 +165,14 @@ REST_FRAMEWORK = {
 default_media_root = os.path.join(BASE_DIR, 'media/')
 MEDIA_ROOT = os.getenv('MEDIA_ROOT', default_media_root)
 MEDIA_URL = '/media/'
+
+AUTH_USER_MODEL = 'users.User'
+
+AUTHENTICATION_BACKENDS = [
+    'common.utilities.auth.ClassteacherAuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+}

@@ -19,12 +19,23 @@ from django.conf.urls import include, url
 from django.conf import settings
 from django.views.static import serve
 
+from users.views import (
+    UserCreateAPIView,
+    UserLoginAPIView,
+    UserRetrieveUpdateAPIView,
+)
+
 authpatterns = [
     path(r'accounts/', include('rest_framework.urls')),
+    path(r'register/', UserCreateAPIView.as_view(), name='register'),
+    path(r'login/', UserLoginAPIView.as_view(), name='login'),
+    path(r'me/', UserRetrieveUpdateAPIView.as_view()),
 ]
 
+
 apipatterns = [
-  
+    path(r'users/', include('users.urls')),
+    path(r'auth/', include(authpatterns)),
 ]
 
 urlpatterns = [
