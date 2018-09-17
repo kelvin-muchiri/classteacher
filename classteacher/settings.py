@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
 CLASSTEACHER_APPS = [
     'users.apps.UsersConfig',
+    'classes.apps.ClassesConfig',
 ]
 
 INSTALLED_APPS += CLASSTEACHER_APPS

@@ -7,11 +7,7 @@ from django.conf import settings
 
 from common.utilities import (
 	GENDER_CHOICES,
-	CURRICULUM_CHOICES,
-	CATEGORY_CHOICES,
 )
-
-from phonenumber_field.modelfields import PhoneNumberField
 
 class SoftDeletionQuerySet(QuerySet):
 	def delete(self):
