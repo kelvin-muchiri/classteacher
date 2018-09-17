@@ -6,6 +6,7 @@ class SubjectSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Subject
 		fields = (
+			'id',
 			'name',
 			'code'
 		)
@@ -22,6 +23,7 @@ class SubjectInlineSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Subject
 		fields = (
+			'id',
 			'name',
 			'code'
 		)
