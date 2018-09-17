@@ -18,15 +18,13 @@ class ClassSerializer(serializers.ModelSerializer):
 
 		extra_kwargs = {
 			'name': {
-				'error_messages': {
-					'blank': 'This field is required'
-				}
-			},
-			'class_teacher': {
 				'validators': [UniqueValidator(
 					queryset=Class.objects.all(),
 					message='A class with this name already exists'
 				)],
+				'error_messages': {
+					'blank': 'This field is required'
+				}
 			}
 		}
 
